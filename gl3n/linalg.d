@@ -162,11 +162,14 @@ struct Vector(type, int dimension_) if((dimension_ >= 2) && (dimension_ <= 4)) {
           
     /// Returns true if all values are not nan and finite, otherwise false.
     @property bool ok() const {
-        foreach(v; vector) {
-            if(isNaN(v) || isInfinity(v)) {
-                return false;
-            }
-        }
+		static if (isFloatingPoint!vt)
+		{
+			foreach(v; vector) {
+				if(isNaN(v) || isInfinity(v)) {
+					return false;
+				}
+			}
+		}
         return true;
     }
     
@@ -450,7 +453,7 @@ struct Vector(type, int dimension_) if((dimension_ >= 2) && (dimension_ <= 4)) {
 
     unittest {
         vec2 v2 = vec2(1.0f, 3.0f);
-        2 * v2;
+
         assert((v2*2.5f).vector == [2.5f, 7.5f]);
         assert((v2+vec2(3.0f, 1.0f)).vector == [4.0f, 4.0f]);
         assert((v2-vec2(1.0f, 3.0f)).vector == [0.0f, 0.0f]);

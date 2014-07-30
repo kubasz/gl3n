@@ -4,7 +4,7 @@
 	"homepage": "http://dav1dde.github.com/gl3n/",
 	"copyright": "Copyright © 2011, David Herberth",
     "license": "MIT",
-    "targetType": "staticLibrary",
+    "targetType": "library",
     "targetName": "gl3n",
     "sourcePaths": ["gl3n"],
     "dflags": ["-O", "-w", "-release"],
